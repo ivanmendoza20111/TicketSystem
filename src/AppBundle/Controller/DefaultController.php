@@ -24,7 +24,7 @@ class DefaultController extends Controller
             $user->setName('Ivan');
             $user->setLastname('Mendoza');
             $user->setDateCreated(new \DateTime());
-            $user->setStatus('ACTIVO');
+            $user->setStatus('Active');
             $user->setUsername('i.mendoza');
 
             $plainPassword = '1234';
