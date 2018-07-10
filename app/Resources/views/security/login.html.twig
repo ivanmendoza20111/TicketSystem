@@ -8,18 +8,24 @@
 {% endblock %}
 
 {% block container %}
-    <form class="form-signin">
+    <form class="form-signin" action="{{ path('login') }}" method="post">
         <div class="panel panel-primary">
             <div class="panel-heading">Ticket System</div>
             <div class="panel-body">
                 <div class="form-group">
                     <label >Username:</label>
-                    <input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Username" required autofocus>
                 </div>
                 <div class="form-group">
                     <label>Password:</label>
-                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                    <input type="password" id="password" name="_password" class="form-control" placeholder="Password" required>
                 </div>
+
+                {% if error %}
+                    <div style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <br>
+
                 <div class="pull-right">
                     <button class="btn  btn-primary" type="submit">Sign in</button>
                 </div>
