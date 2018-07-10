@@ -1,0 +1,32 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}
+    Tickets
+{% endblock %}
+
+{% block container %}
+    <div class="panel panel-default">
+        <div class="panel-heading">List of Tickets</div>
+        <div class="panel-body">
+            <div class="pull-right">
+                <a class="btn btn-primary"> Create Ticket</a>
+            </div>
+            <div class="container-fluid"></div>
+            <br>
+            <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Description</th>
+                        <th>Employee(s)</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        </div>
+    </div>
+{% endblock %}

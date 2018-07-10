@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/signin.css') }}">
 {% endblock %}
 
+{% block menu %}
+{% endblock %}
+
 {% block container %}
     <form class="form-signin" action="{{ path('login') }}" method="post">
         <div class="panel panel-primary">
@@ -25,10 +28,11 @@
                     <div style="color: red">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
                 <br>
-
+                <input hidden name="_target_path" value="/ticket">
                 <div class="pull-right">
                     <button class="btn  btn-primary" type="submit">Sign in</button>
                 </div>
+
             </div>
         </div>
     </form>

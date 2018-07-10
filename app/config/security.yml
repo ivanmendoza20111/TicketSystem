@@ -5,11 +5,16 @@ security:
     encoders:
               AppBundle\Entity\User:
                     algorithm: bcrypt
+              Symfony\Component\Security\Core\User\User: plaintext
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory:
+              users:
+                    ivan:
+                      password: ivan
+                      roles: 'ROLE_USER'
         our_db_provider:
                         entity:
                             class: AppBundle:User

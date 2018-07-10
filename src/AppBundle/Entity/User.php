@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -50,6 +51,25 @@ class User implements UserInterface, \Serializable
      */
     private $password;
 
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_created", type="datetime")
+     */
+    private $dateCreated;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
 
     /**
      * Get id
@@ -158,6 +178,38 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * Returns the roles granted to the user.
      *
      * <code>
@@ -242,5 +294,22 @@ class User implements UserInterface, \Serializable
             // $this->salt
             ) = unserialize($serialized, array('allowed_classes' => false));
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    /**
+     * @param \DateTime $dateCreated
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+    }
+
 }
 
