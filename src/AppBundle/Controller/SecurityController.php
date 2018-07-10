@@ -21,17 +21,21 @@ class SecurityController extends Controller
      */
     public function indexAction(Request $request,AuthenticationUtils $authenticationUtils)
     {
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
+        if($this->getUser() == null) {
+            // get the login error if there is one
+            $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+            // last username entered by the user
+            $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-            'request'=>$authenticationUtils
-        ));
+            return $this->render('security/login.html.twig', array(
+                'last_username' => $lastUsername,
+                'error' => $error,
+                'request' => $authenticationUtils
+            ));
+        }else{
+            return $this->redirectToRoute('ticket');
+        }
     }
 
     /**
