@@ -5,13 +5,20 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
- */
+ * @UniqueEntity(
+ * fields={"username"},
+ * errorPath="username",
+ * message="Username already exists!!"
+ *)
+*/
 class User implements UserInterface
 {
     /**
@@ -271,8 +278,5 @@ class User implements UserInterface
     {
         $this->dateCreated = $dateCreated;
     }
-
-    
-
 }
 
