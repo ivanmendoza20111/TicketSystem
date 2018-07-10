@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User implements UserInterface, \Serializable
+class User implements UserInterface
 {
     /**
      * @var int
@@ -154,11 +154,7 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set password
-     *
      * @param string $password
-     *
-     * @return User
      */
     public function setPassword($password)
     {
@@ -168,9 +164,12 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get password
+     * Returns the password used to authenticate the user.
      *
-     * @return string
+     * This should be the encoded password. On authentication, a plain-text
+     * password will be salted, encoded, and then compared to this value.
+     *
+     * @return string The password
      */
     public function getPassword()
     {
@@ -243,6 +242,7 @@ class User implements UserInterface, \Serializable
     public function getSalt()
     {
         // TODO: Implement getSalt() method.
+        return null;
     }
 
     /**
@@ -254,45 +254,6 @@ class User implements UserInterface, \Serializable
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
-    }
-
-    /**
-     * String representation of object
-     * @link http://php.net/manual/en/serializable.serialize.php
-     * @return string the string representation of the object or null
-     * @since 5.1.0
-     */
-    public function serialize()
-    {
-        // TODO: Implement serialize() method.
-        return serialize(array(
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
-        ));
-    }
-
-    /**
-     * Constructs the object
-     * @link http://php.net/manual/en/serializable.unserialize.php
-     * @param string $serialized <p>
-     * The string representation of the object.
-     * </p>
-     * @return void
-     * @since 5.1.0
-     */
-    public function unserialize($serialized)
-    {
-        // TODO: Implement unserialize() method.
-        list (
-            $this->id,
-            $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt
-            ) = unserialize($serialized, array('allowed_classes' => false));
     }
 
     /**

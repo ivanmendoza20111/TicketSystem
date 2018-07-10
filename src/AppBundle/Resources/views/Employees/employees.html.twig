@@ -37,8 +37,8 @@
                                 <td>{{ employee.datecreated|date('m/d/Y H:m:s') }}</td>
                                 <td>{{ employee.status }}</td>
                                 <td>
-                                    <button href="" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span> <b>View</b></button>
-                                    <a href="" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span> <b>Edit</b></a>
+                                    <a href="{{ path('view_employee',{ 'id':employee.id }) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span> <b>View</b></a>
+                                    <a href="{{ path('edit_employee',{ 'id':employee.id }) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span> <b>Edit</b></a>
                                     <button id="deleteEmployee" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> <b>Delete</b></button>
                                 </td>
                             </tr>
@@ -53,4 +53,30 @@
         </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+
+<script>
+    $(document).ready(function(e){
+        $(document).on('click','#deleteEmployee',function(e) {
+            var r=$(e.target).closest('tr');
+            
+            var id=r.find('#id').text();
+            r.remove();
+
+            $.ajax({
+                url:Routing.generate('delete_employee', {id:id}),
+                type:'DELETE',
+                success: function(response) {
+
+                },
+                error:function(err) {
+                  
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

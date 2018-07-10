@@ -5,4 +5,21 @@
 {% endblock %}
 
 {% block container %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Employee Form</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <label>Employee#: {{ employee.id }} </label><br>
+                    <label>First Name: {{ employee.name }} </label><br>
+                    <label>Last Name: {{ employee.lastname }}</label></br>
+                    <label>Username: {{ employee.username }}</label></br>
+                    <label>Date Created: {{ employee.datecreated|date('m/d/Y H:m:s') }}</label></br>
+                    <label>Status: {{ employee.status }}</label></br>
+                    <br>
+                    <a href="{{ path('employees') }}" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> <b>Back</b></a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

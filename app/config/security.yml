@@ -5,20 +5,14 @@ security:
     encoders:
               AppBundle\Entity\User:
                     algorithm: bcrypt
-              Symfony\Component\Security\Core\User\User: plaintext
+                    cost: 4
 
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory:
-              users:
-                    ivan:
-                      password: ivan
-                      roles: 'ROLE_USER'
         our_db_provider:
-                        entity:
-                            class: AppBundle:User
-                            property: username
+                  entity:
+                      class: AppBundle:User
+                      property: username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -28,6 +22,7 @@ security:
 
         main:
             anonymous: ~
+            provider: our_db_provider
             form_login:
                       login_path: login
                       check_path: login
@@ -42,3 +37,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+
+    access_control:
+            - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+            - { path: ^/ticket, roles: [ROLE_USER, ROLE_ADMIN] }
