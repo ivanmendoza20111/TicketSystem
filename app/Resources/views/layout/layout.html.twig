@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Ticket System |{% block title %}{% endblock %}</title>
     {% block style %}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
     {% endblock %}
 </head>
 <body>
@@ -11,10 +12,14 @@
 {% block menu %}
 {% endblock %}
 
-{% block container %}
-{% endblock %}
+<div class="container">
+    {% block container %}
+    {% endblock %}
+</div>
 
 {% block javascript %}
+    <script src="{{ asset('assets/js/jquery3.3.1.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
 {% endblock %}
 </body>
 </html>
