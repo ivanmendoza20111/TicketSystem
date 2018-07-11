@@ -18,9 +18,9 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>Date</th>
                         <th>Subject</th>
                         <th>Employee(s)</th>
-                        <th>Date</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -29,10 +29,10 @@
                     {% if tickets|length > 0 %}
                         {% for ticket in tickets %}
                             <tr>
-                                <td id="id">{{ ticket.id }}</td>
-                                <td>{{ ticket.subject }}</td>
-                                <td></td>
+                                <td id="id"><a href="{{ path('view_ticket',{id : ticket.id}) }}">{{ ticket.id }}</a></td>
                                 <td>{{ ticket.date|date('m/d/Y H:m:s') }}</td>
+                                <td><a href="{{ path('view_ticket',{id : ticket.id}) }}">{{ ticket.subject }}</a></td>
+                                <td>{{ ticket.user.name }} {{ ticket.user.lastname }}</td>
                                 <td>{{ ticket.status }}</td>
                                 <td>
                                     <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus-sign"></span> <b>Notes</b></button>

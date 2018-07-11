@@ -25,6 +25,8 @@ class TicketController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $em=$this->getDoctrine()->getManager();
+
         $tickets=$this->getDoctrine()->getManager()->getRepository(Ticket::class)->findBy(array('user'=>$this->getUser()));
 
         return $this->render('@App\Ticket\ticket.html.twig',array(
@@ -102,9 +104,12 @@ class TicketController extends Controller
      */
     public function indexViewEmployee(Ticket $ticket)
     {
+        $employees=$ticket->getEmployees();
+
         return $this->render('@App\Ticket\view.html.twig',
             array(
-                "ticket" => $ticket
+                "ticket" => $ticket,
+                'employees'=>$employees
             ));
     }
 

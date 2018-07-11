@@ -17,9 +17,18 @@
                     <label>Date Created: {{ employee.datecreated|date('m/d/Y H:m:s') }}</label></br>
                     <label>Status: {{ employee.status }}</label></br>
                     <br>
-                    <a href="{{ path('employees') }}" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> <b>Back</b></a>
+                    <button type="button" onclick="goBack();" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span> <b>Back</b></button>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+<script>
+    function goBack(){
+        window.history.back();
+    }
+</script>
 {% endblock %}
