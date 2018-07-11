@@ -14,7 +14,7 @@
                     {{ form_row(form.subject) }}
                     <div class="form-group">
                         <label>Employee(s):</label>
-                        <select class="form-control select2" required="true" name="employees[]" multiple="multiple">
+                        <select class="form-control select2" required="true" name="employees[]" id="employees" multiple="multiple">
                             {% for employee in employees %}
                                 <option value="{{ employee.id }}">{{ employee.name }} {{ employee.lastname }}</option>
                             {% endfor %}

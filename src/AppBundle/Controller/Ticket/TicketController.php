@@ -48,11 +48,23 @@ class TicketController extends Controller
             $ticket->setStatus('Open');
 
             $em = $this->getDoctrine()->getManager();
+
+            //Obtener datos de empleados
+            $employees=($request->request->all())['employees'];
+            if(count($employees)>0) {
+                foreach ($employees as $employee) {
+                    $user = $em->getRepository(User::class)->find($employee);
+                    $ticket->addEmployee($user);
+                }
+            }
+
+            $em = $this->getDoctrine()->getManager();
             $em->persist($ticket);
             $em->flush();
             return $this->redirectToRoute('ticket');
         }
 
+        //Buscando Usuarios Activos
         $em=$this->getDoctrine()->getManager();
         $query=$em->createQuery(
             'SELECT u
