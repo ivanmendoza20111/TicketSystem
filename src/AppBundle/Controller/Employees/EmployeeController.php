@@ -17,11 +17,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class EmployeeController extends Controller
 {
     /**
-     * @Route("/employees", name="employees")
+     * @Route("/employees", name="employees", options={"expose"=true})
      */
     public function indexAction(Request $request)
     {
@@ -42,23 +46,9 @@ class EmployeeController extends Controller
      */
     public function indexEditEmployee(Request $request, User $user,UserPasswordEncoderInterface $passwordEncoder)
     {
-        $form= $this->createForm(UserType::class,$user);
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-            return $this->redirectToRoute('employees');
-        }
-
         return $this->render('@App\Employees\edit.html.twig',
             array(
                 "employee" => $user,
-                'form'=>$form->createView()
             ));
     }
 
@@ -105,30 +95,46 @@ class EmployeeController extends Controller
 
     //Restful
     /**
+     * @Route("/rest/employee/",options={"expose"=true}, name="validate_username")
+     * @Method("POST")
+     * @param Request $request
+     * @return Response
+     */
+    public function validateUsername(Request $request){
+        $data = $request->getContent();
+        $data = (json_decode($data, true));
+
+        $em = $this->getDoctrine()->getManager();
+        $user_repo=$em->getRepository(User::class);
+        $user_isset = $user_repo->findBy(array('username'=>$data['username']));
+
+        if(count($user_isset)>=1)
+            return new Response('1');
+        else
+            return new Response('0');
+    }
+
+    /**
      * @Route("/rest/employee/{id}",options={"expose"=true}, name="update_employee")
      * @Method("PUT")
      * @param Request $request
      * @param User $usuario
-     * @return JsonResponse
+     * @return Response
      */
     public function updateEmployee(Request $request,User $user)
     {
         $data = $request->getContent();
         $data = (json_decode($data, true));
 
-        $form = $this->createForm(UsuarioType::class, $user);
-        $form->submit($data);
+        $user->setName($data['username']);
+        $user->setLastname($data['lastname']);
 
-        var_dump($data);
-        die;
-        return;
+        $user->setUsername($data['username']);
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();
 
-        $jsonContent = $this->get('serializer')->serialize($user, 'json');
-        $jsonContent = json_decode($jsonContent,true);
-        return new JsonResponse($jsonContent);
+        return new Response("1");
     }
 
     /**

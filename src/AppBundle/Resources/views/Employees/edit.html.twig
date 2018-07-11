@@ -10,40 +10,24 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-5">
-                    {{ form_start(form ,{'action': path('edit_employee', {id: employee.id}), 'method': 'GET'})  }}
-                    {{ form_widget(form) }}
-                        <br>
-                        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Save</b></button>
-                        <a class="btn btn-danger" href="{{ path('employees') }}"><span class="glyphicon glyphicon-remove"></span> <b>Cancel</b></a>
-                    {{ form_end(form) }}
-
-                    {#<form>
+                    <form id="frmEdit">
                         <input hidden id="id" value="{{ employee.id }}">
                         <div class="form-group">
                             <label>First Name:</label>
-                            <input type="text" class="form-control" id="txtFirstName" value="{{ employee.name }}">
+                            <input type="text" class="form-control" id="txtFirstName" value="{{ employee.name }}" required="true">
                         </div>
                         <div class="form-group">
                             <label>Last Name:</label>
-                            <input type="text" class="form-control" id="txtLastName" value="{{ employee.lastname }}">
+                            <input type="text" class="form-control" id="txtLastName" value="{{ employee.lastname }}" required="true">
                         </div>
                         <div class="form-group">
                             <label>Username:</label>
-                            <input type="text" class="form-control" id="txtUsername" value="{{ employee.username }}">
-                        </div>
-                        <div class="form-group">
-                            <label>Password:</label>
-                            <input type="password" class="form-control" id="txtpassword1" value="">
-                        </div>
-                        <div class="form-group">
-                            <label>Repeat Password:</label>
-                            <input type="password" class="form-control" id="txtpassword2" value="">
+                            <input type="text" class="form-control" id="txtUsername" value="{{ employee.username }}" required="true">
                         </div>
                         <br>
-                        <button class="btn btn-success" type="button" onclick="guardar();"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Save</b></button>
+                        <button type="submit" class="btn btn-success" id="btnSave" type="button" ><span class="glyphicon glyphicon-floppy-disk"></span> <b>Save</b></button>
                         <a class="btn btn-danger" href="{{ path('employees') }}"><span class="glyphicon glyphicon-remove"></span> <b>Cancel</b></a>
                     </form>
-                    #}
                 </div>
             </div>
         </div>
@@ -54,35 +38,56 @@
 {{ parent() }}
 
 <script>
-    function guardar(){
 
-        var id = $('#id').val();
-        var name = $('#txtFirstName').val();
-        var lastname = $('#txtLastName').val();
-        var username = $('#txtUsername').val();
-        var password1=$('#txtpassword1').val();
-        var password2=$('#txtpassword2').val();
+    function validarUsername(){
+         var id = $('#id').val();
+         var username = $('#txtUsername').val();
 
-        var data={
-            id:id,
-            name:name,
-            lastname:lastname,
-            username:username,
-            password1:password1,
-            password2:password2
-        };
+         var data={id:id,username:username};
 
-        $.ajax({
-            url: Routing.generate('update_employee', {id:id}),
-            data: JSON.stringify(data),
-            type: 'PUT',
-            success:function (response) {
-                console.log(response);
-            },
-            error: function(err){
-                console.log(err);
+         $.ajax({
+            url:Routing.generate('validate_username'),
+            data:JSON.stringify(data),
+            type:'POST',
+            success: function(response){
+                if(response=='1'){
+                    return false;
+                }else{
+                    return true;
+                }
             }
-        })
+         });
     }
+
+    $(document).ready(function(e){
+    $('#frmEdit').submit(function(e){
+            e.preventDefault();
+                var id = $('#id').val();
+                var name = $('#txtFirstName').val();
+                var lastname = $('#txtLastName').val();
+                var username = $('#txtUsername').val();
+
+                var data={
+                    id:id,
+                    name:name,
+                    lastname:lastname,
+                    username:username,
+                };
+
+                $.ajax({
+                    url: Routing.generate('update_employee', {id:id}),
+                    data: JSON.stringify(data),
+                    type: 'PUT',
+                    success:function (response) {
+                        window.location.href=Routing.generate('employees');
+                    },
+                    error: function(err){
+                        alert('Nombre de Usuario Existe. Favor Introducir otro.');
+                    }
+                });
+        });
+
+
+    });
     </script>
 {% endblock %}
