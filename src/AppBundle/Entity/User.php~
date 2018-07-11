@@ -72,12 +72,20 @@ class User implements UserInterface
      */
     private $dateCreated;
 
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Ticket", inversedBy="employees")
+     */
+    private $employeesA;
+
     /**
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
+
+
 
     /**
      * @ORM\OneToMany(targetEntity="Ticket", mappedBy="user")
@@ -290,6 +298,37 @@ class User implements UserInterface
         $this->dateCreated = $dateCreated;
     }
 
+    /**
+     * Add ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     *
+     * @return User
+     */
+    public function addTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
 
+        return $this;
+    }
+
+    /**
+     * Remove ticket
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     */
+    public function removeTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
 }
-

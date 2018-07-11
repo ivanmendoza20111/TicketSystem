@@ -5,6 +5,8 @@
     <title>Ticket System |{% block title %}{% endblock %}</title>
     {% block style %}
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/select2-bootstrap.min.css') }}">
     {% endblock %}
 </head>
 <body>
@@ -46,6 +48,7 @@
 {% block javascript %}
     <script src="{{ asset('assets/js/jquery3.3.1.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
 
     <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
@@ -54,6 +57,10 @@
         $(document).ready(function() {
             $('.nav .navbar-nav li.active').removeClass('active');
             $('a[href="' + location.pathname + '"]').closest('li').addClass('active');
+
+            $('.select2').select2({
+                 theme: "bootstrap"
+            });
         });
     </script>
 {% endblock %}

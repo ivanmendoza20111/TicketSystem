@@ -55,7 +55,9 @@ class Ticket
      */
     private $user;
 
-
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="employeesA")
+     */
     private $employees;
 
     /**
@@ -210,5 +212,46 @@ class Ticket
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->employees = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add employee
+     *
+     * @param \AppBundle\Entity\User $employee
+     *
+     * @return Ticket
+     */
+    public function addEmployee(\AppBundle\Entity\User $employee)
+    {
+        $this->employees[] = $employee;
+
+        return $this;
+    }
+
+    /**
+     * Remove employee
+     *
+     * @param \AppBundle\Entity\User $employee
+     */
+    public function removeEmployee(\AppBundle\Entity\User $employee)
+    {
+        $this->employees->removeElement($employee);
+    }
+
+    /**
+     * Get employees
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmployees()
+    {
+        return $this->employees;
     }
 }

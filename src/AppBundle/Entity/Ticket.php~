@@ -31,7 +31,7 @@ class Ticket
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateend", type="datetime")
+     * @ORM\Column(name="dateend", type="datetime", nullable=true)
      */
     private $dateend;
 
@@ -55,7 +55,9 @@ class Ticket
      */
     private $user;
 
-
+    /**
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="employeesA")
+     */
     private $employees;
 
     /**
@@ -188,7 +190,27 @@ class Ticket
         $this->dateend = $dateend;
     }
 
-    
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Ticket
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
 
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }
-

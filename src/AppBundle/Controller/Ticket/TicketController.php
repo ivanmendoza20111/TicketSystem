@@ -9,6 +9,7 @@
 namespace AppBundle\Controller\Ticket;
 
 use AppBundle\Entity\Ticket;
+use AppBundle\Entity\User;
 use AppBundle\Form\TicketType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -52,8 +53,19 @@ class TicketController extends Controller
             return $this->redirectToRoute('ticket');
         }
 
+        $em=$this->getDoctrine()->getManager();
+        $query=$em->createQuery(
+            'SELECT u
+             FROM AppBundle:User u
+             WHERE u.status = :status
+            '
+        )->setParameter('status','Active');
+
+        $employees=$query->getResult();
+
         return $this->render('@App\Ticket\new.html.twig',array(
-            'form'=>$form->createView()
+            'form'=>$form->createView(),
+            'employees'=>$employees
         ));
     }
 

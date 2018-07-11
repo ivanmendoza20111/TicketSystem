@@ -102,7 +102,7 @@ class EmployeeController extends Controller
         $data = $request->getContent();
         $data = (json_decode($data, true));
 
-        $user->setName($data['username']);
+        $user->setName($data['name']);
         $user->setLastname($data['lastname']);
         $user->setUsername($data['username']);
         $user->setStatus($data['status']);
