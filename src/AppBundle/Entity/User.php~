@@ -290,37 +290,6 @@ class User implements UserInterface
         $this->dateCreated = $dateCreated;
     }
 
-    /**
-     * Add ticket
-     *
-     * @param \AppBundle\Entity\Ticket $ticket
-     *
-     * @return User
-     */
-    public function addTicket(\AppBundle\Entity\Ticket $ticket)
-    {
-        $this->tickets[] = $ticket;
 
-        return $this;
-    }
-
-    /**
-     * Remove ticket
-     *
-     * @param \AppBundle\Entity\Ticket $ticket
-     */
-    public function removeTicket(\AppBundle\Entity\Ticket $ticket)
-    {
-        $this->tickets->removeElement($ticket);
-    }
-
-    /**
-     * Get tickets
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTickets()
-    {
-        return $this->tickets;
-    }
 }
+

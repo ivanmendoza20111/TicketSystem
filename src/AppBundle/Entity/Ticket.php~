@@ -31,7 +31,7 @@ class Ticket
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateend", type="datetime", nullable=true)
+     * @ORM\Column(name="dateend", type="datetime")
      */
     private $dateend;
 
@@ -188,27 +188,7 @@ class Ticket
         $this->dateend = $dateend;
     }
 
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Ticket
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
+    
 
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
 }
+

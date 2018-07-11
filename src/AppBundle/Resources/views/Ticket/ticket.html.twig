@@ -9,24 +9,71 @@
         <div class="panel-heading">List of Tickets</div>
         <div class="panel-body">
             <div class="pull-right">
-                <a class="btn btn-primary"> Create Ticket</a>
+                <a class="btn btn-primary" href="{{ path('ticket_new') }}"><span class="glyphicon glyphicon-plus"></span> <b>Create Ticket</b></a>
             </div>
             <div class="container-fluid"></div>
             <br>
             <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped table-condensed">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Description</th>
+                        <th>Subject</th>
                         <th>Employee(s)</th>
                         <th>Date</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
+                <tbody>
+                    {% if tickets|length > 0 %}
+                        {% for ticket in tickets %}
+                            <tr>
+                                <td id="id">{{ ticket.id }}</td>
+                                <td>{{ ticket.subject }}</td>
+                                <td></td>
+                                <td>{{ ticket.date|date('m/d/Y H:m:s') }}</td>
+                                <td>{{ ticket.status }}</td>
+                                <td>
+                                    <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus-sign"></span> <b>Notes</b></button>
+                                    <a href="{{ path('view_ticket',{id : ticket.id}) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span> <b>View</b></a>
+                                    <a href="" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span> <b>Edit</b></a>
+                                    <button id="deleteTicket" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> <b>Delete</b></button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr><td colspan="6"><b>No Hay Registros</b></td></tr>
+                    {% endif %}
+                </tbody>
             </table>
         </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+
+<script>
+    $(document).ready(function(e){
+        $(document).on('click','#deleteTicket',function(e) {
+            var r=$(e.target).closest('tr');
+
+            var id=r.find('#id').text();
+            r.remove();
+
+            $.ajax({
+                url:Routing.generate('delete_ticket', {id:id}),
+                type:'DELETE',
+                success: function(response) {
+
+                },
+                error:function(err) {
+
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

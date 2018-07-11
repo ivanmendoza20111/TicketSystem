@@ -1,0 +1,23 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}
+    Ticket | New
+{% endblock %}
+
+{% block container %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Ticket Form</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-5">
+                    {{ form_start(form ,{'action': path('ticket_new'), 'method': 'POST'})  }}
+                    {{ form_widget(form) }}
+                    <br>
+                    <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Save</b></button>
+                    <a class="btn btn-danger" href="{{ path('ticket') }}"><span class="glyphicon glyphicon-remove"></span> <b>Cancel</b></a>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
