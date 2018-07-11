@@ -95,26 +95,6 @@ class EmployeeController extends Controller
 
     //Restful
     /**
-     * @Route("/rest/employee/",options={"expose"=true}, name="validate_username")
-     * @Method("POST")
-     * @param Request $request
-     * @return Response
-     */
-    public function validateUsername(Request $request){
-        $data = $request->getContent();
-        $data = (json_decode($data, true));
-
-        $em = $this->getDoctrine()->getManager();
-        $user_repo=$em->getRepository(User::class);
-        $user_isset = $user_repo->findBy(array('username'=>$data['username']));
-
-        if(count($user_isset)>=1)
-            return new Response('1');
-        else
-            return new Response('0');
-    }
-
-    /**
      * @Route("/rest/employee/{id}",options={"expose"=true}, name="update_employee")
      * @Method("PUT")
      * @param Request $request
@@ -128,8 +108,8 @@ class EmployeeController extends Controller
 
         $user->setName($data['username']);
         $user->setLastname($data['lastname']);
-
         $user->setUsername($data['username']);
+        $user->setStatus($data['status']);
 
         $em = $this->getDoctrine()->getManager();
         $em->flush();

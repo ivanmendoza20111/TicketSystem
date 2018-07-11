@@ -24,6 +24,13 @@
                             <label>Username:</label>
                             <input type="text" class="form-control" id="txtUsername" value="{{ employee.username }}" required="true">
                         </div>
+                        <div class="form-group">
+                            <label>Status:</label>
+                            <select class="form-control" id="status">
+                                <option value="Active" {% if employee.status=='Active' %} selected {% endif %}>Active</option>
+                                <option value="Inactive" {% if employee.status=='Inactive' %} selected {% endif %}>Inactive</option>
+                            </select>
+                        </div>
                         <br>
                         <button type="submit" class="btn btn-success" id="btnSave" type="button" ><span class="glyphicon glyphicon-floppy-disk"></span> <b>Save</b></button>
                         <a class="btn btn-danger" href="{{ path('employees') }}"><span class="glyphicon glyphicon-remove"></span> <b>Cancel</b></a>
@@ -38,40 +45,21 @@
 {{ parent() }}
 
 <script>
-
-    function validarUsername(){
-         var id = $('#id').val();
-         var username = $('#txtUsername').val();
-
-         var data={id:id,username:username};
-
-         $.ajax({
-            url:Routing.generate('validate_username'),
-            data:JSON.stringify(data),
-            type:'POST',
-            success: function(response){
-                if(response=='1'){
-                    return false;
-                }else{
-                    return true;
-                }
-            }
-         });
-    }
-
     $(document).ready(function(e){
-    $('#frmEdit').submit(function(e){
+        $('#frmEdit').submit(function(e){
             e.preventDefault();
                 var id = $('#id').val();
                 var name = $('#txtFirstName').val();
                 var lastname = $('#txtLastName').val();
                 var username = $('#txtUsername').val();
+                var status=$('#status').val();
 
                 var data={
                     id:id,
                     name:name,
                     lastname:lastname,
                     username:username,
+                    status:status
                 };
 
                 $.ajax({
@@ -86,8 +74,6 @@
                     }
                 });
         });
-
-
     });
     </script>
 {% endblock %}
