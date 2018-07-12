@@ -50,11 +50,37 @@ class TicketController extends Controller
      */
     public function reportAction(Request $request)
     {
-        $report=array();
+        $fechaDesde='';
+        $fechaHasta='';
 
+        if(isset($request->request->all()['desde']))
+        {
+            if($request->request->all()['desde']!='')
+                $fechaDesde=$request->request->all()['desde'];
+        }
+
+        if(isset($request->request->all()['desde']))
+        {
+            if($request->request->all()['hasta']!='')
+                $fechaHasta=$request->request->all()['hasta'];
+        }
+
+        $em=$this->getDoctrine()->getManager();
+        $report=$em
+            ->getRepository('AppBundle:Ticket')
+            ->createQueryBuilder('t')
+            ->join('t.ticketNote', 'n')
+            ->where('t.dateend >= :desde and t.dateend <= :hasta and t.status=:status')
+            ->setParameter('desde',$fechaDesde)
+            ->setParameter('hasta',$fechaHasta)
+            ->setParameter('status','Closed')
+            ->getQuery()
+            ->getResult();
 
         return $this->render('@App\Ticket\Report\report.html.twig',array(
-            'report'=>$report
+            'report'=>$report,
+            'fechaDesde'=>$fechaDesde,
+            'fechaHasta'=>$fechaHasta
         ));
     }
 
@@ -90,8 +116,6 @@ class TicketController extends Controller
 
         return $this->redirectToRoute('ticket');
     }
-
-
 
     /**
      * @Route("/ticket/new", name="ticket_new")
