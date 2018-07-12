@@ -6,7 +6,7 @@
  * Time: 11:12 AM
  */
 
-namespace AppBundle\Controller\Employees;
+namespace AppBundle\Controller\Employee;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\UserType;

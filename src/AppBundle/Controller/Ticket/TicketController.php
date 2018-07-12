@@ -35,86 +35,22 @@ class TicketController extends Controller
     }
 
     /**
-     * @Route("/ticket/timeEntry/{id}", name="ticket_time_entry",options={"expose"=true})
+     * @Route("/ticket/view/{id}", name="view_ticket", requirements={"id"="\d+"})
+     * @Method("GET")
      * @param Ticket $ticket
+     * @return Response
      */
-    public function TimeEntryAction(Ticket $ticket)
+    public function indexViewTicket(Ticket $ticket)
     {
-        return $this->render('@App\Ticket\TicketTime.html.twig',array(
-            'ticket'=>$ticket
-        ));
-    }
+        $employees=$ticket->getEmployees();
+        $notes=$ticket->getTicketNote();
 
-    /**
-     * @Route("/report", name="report")
-     */
-    public function reportAction(Request $request)
-    {
-        $fechaDesde='';
-        $fechaHasta='';
-
-        if(isset($request->request->all()['desde']))
-        {
-            if($request->request->all()['desde']!='')
-                $fechaDesde=$request->request->all()['desde'];
-        }
-
-        if(isset($request->request->all()['desde']))
-        {
-            if($request->request->all()['hasta']!='')
-                $fechaHasta=$request->request->all()['hasta'];
-        }
-
-        $em=$this->getDoctrine()->getManager();
-        $report=$em
-            ->getRepository('AppBundle:Ticket')
-            ->createQueryBuilder('t')
-            ->join('t.ticketNote', 'n')
-            ->where('t.dateend >= :desde and t.dateend <= :hasta and t.status=:status')
-            ->setParameter('desde',$fechaDesde)
-            ->setParameter('hasta',$fechaHasta)
-            ->setParameter('status','Closed')
-            ->getQuery()
-            ->getResult();
-
-        return $this->render('@App\Ticket\Report\report.html.twig',array(
-            'report'=>$report,
-            'fechaDesde'=>$fechaDesde,
-            'fechaHasta'=>$fechaHasta
-        ));
-    }
-
-    /**
-     * @Route("/ticket/timeEntry", name="time_entry_save")
-     */
-    public function newTimeAction(Request $request)
-    {
-        $note=new Notes();
-
-        $note->setFecha(new \DateTime());
-        $note->setNote($request->request->all()['note']);
-        $note->setUser($this->getUser());
-
-        $em=$this->getDoctrine()->getManager();
-        $ticket=$em->getRepository(Ticket::class)->find($request->request->all()['id']);
-
-        //Insertar Tickets a Notas
-        $ticket->addTicketNote($note);
-
-        //Verificar Estado enviado
-        if($request->request->all()['status']=='Closed')
-        {
-            $ticket->setStatus($request->request->all()['status']);
-            $ticket->setDateend(new \DateTime());
-        }else{
-            $ticket->setStatus($request->request->all()['status']);
-            $ticket->setDateend(null);
-        }
-
-        $em->persist($note);
-        $em->flush();
-
-        return $this->redirectToRoute('ticket');
+        return $this->render('@App\Ticket\view.html.twig',
+            array(
+                "ticket" => $ticket,
+                'employees'=>$employees,
+                'notes'=>$notes
+            ));
     }
 
     /**
@@ -160,35 +96,42 @@ class TicketController extends Controller
     }
 
     /**
-     * @Route("/ticket/delete/{id}",options={"expose"=true}, name="remove_ticket")
-     * @Method("GET")
-     * @param Ticket $ticket
+     * @Route("/report", name="report")
      */
-    public function removeTicket(Ticket $ticket)
+    public function reportAction(Request $request)
     {
+        $fechaDesde='';
+        $fechaHasta='';
+
+        if(isset($request->request->all()['desde']))
+        {
+            if($request->request->all()['desde']!='')
+                $fechaDesde=$request->request->all()['desde'];
+        }
+
+        if(isset($request->request->all()['desde']))
+        {
+            if($request->request->all()['hasta']!='')
+                $fechaHasta=$request->request->all()['hasta'];
+        }
+
         $em=$this->getDoctrine()->getManager();
-        $em->remove($ticket);
-        $em->flush();
-        return $this->redirectToRoute('ticket');
-    }
+        $report=$em
+            ->getRepository('AppBundle:Ticket')
+            ->createQueryBuilder('t')
+            ->join('t.ticketNote', 'n')
+            ->where('t.dateend >= :desde and t.dateend <= :hasta and t.status=:status')
+            ->setParameter('desde',$fechaDesde)
+            ->setParameter('hasta',$fechaHasta)
+            ->setParameter('status','Closed')
+            ->getQuery()
+            ->getResult();
 
-    /**
-     * @Route("/ticket/view/{id}", name="view_ticket", requirements={"id"="\d+"})
-     * @Method("GET")
-     * @param Ticket $ticket
-     * @return Response
-     */
-    public function indexViewTicket(Ticket $ticket)
-    {
-        $employees=$ticket->getEmployees();
-        $notes=$ticket->getTicketNote();
-
-        return $this->render('@App\Ticket\view.html.twig',
-            array(
-                "ticket" => $ticket,
-                'employees'=>$employees,
-                'notes'=>$notes
-            ));
+        return $this->render('@App\Ticket\Report\report.html.twig',array(
+            'report'=>$report,
+            'fechaDesde'=>$fechaDesde,
+            'fechaHasta'=>$fechaHasta
+        ));
     }
 
     /**
@@ -211,6 +154,19 @@ class TicketController extends Controller
                 'employees'=>$employees,
                 'employeesActive'=>$employeesActive
             ));
+    }
+
+    /**
+     * @Route("/ticket/delete/{id}",options={"expose"=true}, name="remove_ticket")
+     * @Method("GET")
+     * @param Ticket $ticket
+     */
+    public function removeTicket(Ticket $ticket)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($ticket);
+        $em->flush();
+        return $this->redirectToRoute('ticket');
     }
 
     //RestFul

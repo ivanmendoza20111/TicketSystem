@@ -43,6 +43,8 @@
                                 {% if notes|length >0 %}
                                     {% for note in notes %}
                                         <tr>
+                                            <td id="noteId" hidden>{{ note.id }}</td>
+                                            <td id="ticketId">{{ ticket.id }}</td>
                                             <td>{{ note.user.name }} {{ note.user.lastname }}</td>
                                             <td>{{ note.fecha|date('m/d/Y H:m:s') }}</td>
                                             <td>{{ note.note }}</td>
@@ -126,6 +128,28 @@
 
             $.ajax({
                 url:Routing.generate('delete_ticketEmployee', {id: ticketId}),
+                type:'DELETE',
+                data: JSON.stringify(data),
+                success:function(response) {
+
+                }
+            });
+        });
+
+        $(document).on('click','#deleteNote',function(e){
+            var r=$(e.target).closest('tr');
+
+            var ticketId=r.find('#ticketId').text();
+            var noteId=r.find('#noteId').text();
+
+            var data={
+                id: ticketId,noteId: noteId
+            };
+
+            r.remove();
+
+            $.ajax({
+                url:Routing.generate('delete_note_ticket', {id: ticketId}),
                 type:'DELETE',
                 data: JSON.stringify(data),
                 success:function(response) {
