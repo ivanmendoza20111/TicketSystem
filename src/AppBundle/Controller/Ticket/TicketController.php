@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller\Ticket;
 
+use AppBundle\Entity\Notes;
 use AppBundle\Entity\Ticket;
 use AppBundle\Entity\User;
 use AppBundle\Form\TicketType;
@@ -21,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 class TicketController extends Controller
 {
     /**
-     * @Route("/ticket", name="ticket",options={"expose"=true})
+     * @Route("/ticket", name="ticket", options={"expose"=true})
      */
     public function indexAction(Request $request)
     {
@@ -43,6 +44,54 @@ class TicketController extends Controller
             'ticket'=>$ticket
         ));
     }
+
+    /**
+     * @Route("/report", name="report")
+     */
+    public function reportAction(Request $request)
+    {
+        $report=array();
+
+
+        return $this->render('@App\Ticket\Report\report.html.twig',array(
+            'report'=>$report
+        ));
+    }
+
+    /**
+     * @Route("/ticket/timeEntry", name="time_entry_save")
+     */
+    public function newTimeAction(Request $request)
+    {
+        $note=new Notes();
+
+        $note->setFecha(new \DateTime());
+        $note->setNote($request->request->all()['note']);
+        $note->setUser($this->getUser());
+
+        $em=$this->getDoctrine()->getManager();
+        $ticket=$em->getRepository(Ticket::class)->find($request->request->all()['id']);
+
+        //Insertar Tickets a Notas
+        $ticket->addTicketNote($note);
+
+        //Verificar Estado enviado
+        if($request->request->all()['status']=='Closed')
+        {
+            $ticket->setStatus($request->request->all()['status']);
+            $ticket->setDateend(new \DateTime());
+        }else{
+            $ticket->setStatus($request->request->all()['status']);
+            $ticket->setDateend(null);
+        }
+
+        $em->persist($note);
+        $em->flush();
+
+        return $this->redirectToRoute('ticket');
+    }
+
+
 
     /**
      * @Route("/ticket/new", name="ticket_new")
@@ -108,11 +157,13 @@ class TicketController extends Controller
     public function indexViewTicket(Ticket $ticket)
     {
         $employees=$ticket->getEmployees();
+        $notes=$ticket->getTicketNote();
 
         return $this->render('@App\Ticket\view.html.twig',
             array(
                 "ticket" => $ticket,
-                'employees'=>$employees
+                'employees'=>$employees,
+                'notes'=>$notes
             ));
     }
 

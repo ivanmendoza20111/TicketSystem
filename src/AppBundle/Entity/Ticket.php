@@ -66,6 +66,11 @@ class Ticket
     private $employees;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Notes", inversedBy="tickets")
+     */
+    private $ticketNote;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255)
@@ -258,5 +263,39 @@ class Ticket
     public function getEmployees()
     {
         return $this->employees;
+    }
+
+    /**
+     * Add ticketNote
+     *
+     * @param \AppBundle\Entity\Notes $ticketNote
+     *
+     * @return Ticket
+     */
+    public function addTicketNote(\AppBundle\Entity\Notes $ticketNote)
+    {
+        $this->ticketNote[] = $ticketNote;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticketNote
+     *
+     * @param \AppBundle\Entity\Notes $ticketNote
+     */
+    public function removeTicketNote(\AppBundle\Entity\Notes $ticketNote)
+    {
+        $this->ticketNote->removeElement($ticketNote);
+    }
+
+    /**
+     * Get ticketNote
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTicketNote()
+    {
+        return $this->ticketNote;
     }
 }

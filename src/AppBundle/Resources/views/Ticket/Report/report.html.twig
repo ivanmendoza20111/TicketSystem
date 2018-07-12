@@ -1,0 +1,33 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}
+    Report
+{% endblock %}
+
+{% block container %}
+<div class="panel panel-default">
+    <div class="panel-heading">Generate Report</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>From:</label>
+                    <input type="date" class="form-control" id="txtDesde" name="desde">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>To:</label>
+                    <input type="date" class="form-control" id="txtHasta" name="hasta">
+                </div>
+            </div>
+
+        </div>
+        <button class="btn btn-primary" id="generate" name="generate"><span class="glyphicon glyphicon-print"></span> <b>Generate</b></button>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+{% endblock %}

@@ -21,7 +21,8 @@
         </div>
         <hr>
         <h3>Time Entry Information</h3>
-        <form id="frmNote" action="" method="POST">
+        <form id="frmNote" action="{{ path('time_entry_save') }}" method="POST">
+            <input hidden name="id" value="{{ ticket.id }}">
             <div class="form-group">
                 <label>Note:</label>
                 <textarea class="form-control" name="note" rows="6" id="txtnote" autofocus required="true"></textarea>
@@ -31,7 +32,6 @@
                     <div class="form-group">
                         <label>Status:</label>
                         <select class="form-control" id="status" name="status" required="true">
-
                             <option {% if ticket.status=='Open' %} selected {% endif %} value="Open">Open</option>
                             <option {% if ticket.status=='Closed' %} selected {% endif %}  value="Closed">Closed</option>
                         </select>
@@ -43,8 +43,4 @@
         </form>
     </div>
 </div>
-{% endblock %}
-
-{% block javascript %}
-{{ parent() }}
 {% endblock %}

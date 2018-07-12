@@ -40,9 +40,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td colspan="4"><b>No Hay Registros</b></td>
-                                </tr>
+                                {% if notes|length >0 %}
+                                    {% for note in notes %}
+                                        <tr>
+                                            <td>{{ note.user.name }} {{ note.user.lastname }}</td>
+                                            <td>{{ note.fecha|date('m/d/Y H:m:s') }}</td>
+                                            <td>{{ note.note }}</td>
+                                            <td>
+                                                {% if app.user==note.user %}
+                                                    <a href="" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit"></span> <b>Edit</b></a>
+                                                    <button id="deleteNote" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> <b>Delete</b></button>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="4"><b>No Hay Registros</b></td>
+                                    </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                     </div>

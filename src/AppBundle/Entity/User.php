@@ -92,9 +92,15 @@ class User implements UserInterface
      */
     private $tickets;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Notes", mappedBy="user")
+     */
+    private $notes;
+
     public function __construct()
     {
         $this->tickets = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     /**
@@ -364,5 +370,41 @@ class User implements UserInterface
     public function getEmployeesA()
     {
         return $this->employeesA;
+    }
+
+
+
+    /**
+     * Add note
+     *
+     * @param \AppBundle\Entity\Notes $note
+     *
+     * @return User
+     */
+    public function addNote(\AppBundle\Entity\Notes $note)
+    {
+        $this->notes[] = $note;
+
+        return $this;
+    }
+
+    /**
+     * Remove note
+     *
+     * @param \AppBundle\Entity\Notes $note
+     */
+    public function removeNote(\AppBundle\Entity\Notes $note)
+    {
+        $this->notes->removeElement($note);
+    }
+
+    /**
+     * Get notes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNotes()
+    {
+        return $this->notes;
     }
 }
