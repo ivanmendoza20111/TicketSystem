@@ -3,13 +3,13 @@ Ticket System Net Tech International
 
 **Desarrollador Iván Mendoza**
 
-**Pasos para la Instalación de la Aplicación**
+**Pasos para la Instalación de la Aplicación:**
 
   * Tener instalado Composer y un servidor compatible con PHP.
 
   * Instalar Git en la Pc para hacer un clone del Repositorio o descargar el Proyecto desde GitHub. Luego Alojarlo en la carpeta en donde se visualizan las paginas web de su servidor local.
 
-  * Ir a la TERMINAL o CMD de Windows e ir a donde esta el Proyecto.
+  * Ir a la TERMINAL en Linux o CMD de Windows e ir a donde esta el Proyecto.
 
   * Ejecutar los sigte. comandos antes de ejecutar la App:
   
