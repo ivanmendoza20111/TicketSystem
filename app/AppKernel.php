@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
 
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new Knp\Bundle\TimeBundle\KnpTimeBundle(),
+            //new Knp\Bundle\TimeBundle\KnpTimeBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

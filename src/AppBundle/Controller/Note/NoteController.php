@@ -25,7 +25,7 @@ class NoteController extends Controller
      */
     public function TimeEntryIndex(Ticket $ticket)
     {
-        return $this->render('@App\Ticket\TicketTime.html.twig',array(
+        return $this->render('@App\Notes\TicketTime.html.twig',array(
             'ticket'=>$ticket
         ));
     }
@@ -52,6 +52,10 @@ class NoteController extends Controller
         {
             $ticket->setStatus($request->request->all()['status']);
             $ticket->setDateend(new \DateTime());
+
+            //Calculo de Horas
+            $hour=$ticket->getDate()->diff(new \DateTime());
+            $ticket->setHours($hour->format('%H.%m'));
         }else{
             $ticket->setStatus($request->request->all()['status']);
             $ticket->setDateend(null);

@@ -19,7 +19,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label>To:</label>
-                    <input type="date" class="form-control" id="txtHasta" name="hasta" required value="{{ fechaHasta }}">
+                    <input type="date" class="form-control" id="txtHasta" name="hasta" required  value="{{ fechaHasta }}">
                 </div>
             </div>
 
@@ -42,22 +42,27 @@
                             <th>Subject</th>
                             <th>Date Start</th>
                             <th>Date End</th>
+                            <th>Hours</th>
                         </tr>
                     </thead>
                     <tbody>
+                    {% set hours=0 %}
                     {% for data in report %}
+                        {% set hours=hours+data.hours %}
                         <tr>
                             <td>{{ data.id }}</td>
                             <td>{{ data.user.name }} {{ data.user.lastname }}</td>
                             <td>{{ data.subject }}</td>
                             <td>{{ data.date|date('m/d/Y H:m:s') }}</td>
                             <td>{{ data.dateend|date('m/d/Y H:m:s') }}</td>
+                            <td>{{ data.hours }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="5"><b>Total: {{ report|length }}</b> </td>
+                            <td  colspan="5"><b>Total: {{ report|length }}</b> </td>
+                            <td><b>Total Hours: {{ hours }}</b></td>
                         </tr>
                     </tfoot>
                 </table>

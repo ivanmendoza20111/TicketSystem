@@ -71,6 +71,13 @@ class Ticket
     private $ticketNote;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="hours", type="float", nullable=true)
+     */
+    private $hours;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="status", type="string", length=255)
@@ -297,5 +304,29 @@ class Ticket
     public function getTicketNote()
     {
         return $this->ticketNote;
+    }
+
+    /**
+     * Set hours
+     *
+     * @param float $hours
+     *
+     * @return Ticket
+     */
+    public function setHours($hours)
+    {
+        $this->hours = $hours;
+
+        return $this;
+    }
+
+    /**
+     * Get hours
+     *
+     * @return float
+     */
+    public function getHours()
+    {
+        return $this->hours;
     }
 }
