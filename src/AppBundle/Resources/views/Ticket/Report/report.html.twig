@@ -25,11 +25,15 @@
 
         </div>
         <button type="submit" class="btn btn-primary" id="generate" name="generate"><span class="glyphicon glyphicon-print"></span> <b>Generate</b></button>
+            {% if report|length > 0 %}
+                <button type="button" class="btn btn-success" id="btnExport"><span class="glyphicon glyphicon-export"></span> <b>Export</b></button>
+            {% endif %}
         </form>
         <br>
         <br>
         {% if report|length > 0 %}
-            <div class="table-responsive">
+
+            <div class="table-responsive" id="tbExport">
                 <table class="table table-striped table-condensed">
                     <thead>
                         <tr>
@@ -38,22 +42,24 @@
                             <th>Subject</th>
                             <th>Date Start</th>
                             <th>Date End</th>
-                            <th>Hours</th>
                         </tr>
                     </thead>
                     <tbody>
                     {% for data in report %}
-
                         <tr>
                             <td>{{ data.id }}</td>
                             <td>{{ data.user.name }} {{ data.user.lastname }}</td>
                             <td>{{ data.subject }}</td>
                             <td>{{ data.date|date('m/d/Y H:m:s') }}</td>
                             <td>{{ data.dateend|date('m/d/Y H:m:s') }}</td>
-                            <td></td>
                         </tr>
                     {% endfor %}
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5"><b>Total: {{ report|length }}</b> </td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         {% endif %}
@@ -64,4 +70,13 @@
 
 {% block javascript %}
 {{ parent() }}
+
+<script>
+$(document).ready(function(e){
+   $("#btnExport").click(function(e) {
+        window.open('data:application/vnd.ms-excel,' + encodeURIComponent($('#tbExport').html()));
+        e.preventDefault();
+    });
+});
+</script>
 {% endblock %}
