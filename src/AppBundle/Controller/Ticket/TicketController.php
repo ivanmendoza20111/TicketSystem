@@ -184,30 +184,34 @@ class TicketController extends Controller
 
         $em=$this->getDoctrine()->getManager();
 
-        $ticket->setSubject($data['subject']);
-        $ticket->setDescription($data['description']);
+        if($data['subject']!='') {
+            $ticket->setSubject($data['subject']);
+            $ticket->setDescription($data['description']);
 
-        //Remover todos los empleados relacionados
-        $employeesTickets=$ticket->getEmployees();
-        if(count($employeesTickets)>0){
-            foreach ($employeesTickets as $user) {
-                $user = $em->getRepository(User::class)->find($user);
-                $ticket->removeEmployee($user);
+            //Remover todos los empleados relacionados
+            $employeesTickets = $ticket->getEmployees();
+            if (count($employeesTickets) > 0) {
+                foreach ($employeesTickets as $user) {
+                    $user = $em->getRepository(User::class)->find($user);
+                    $ticket->removeEmployee($user);
+                }
             }
+
+            //Obtener datos de empleados
+            $employees = $data['empleoyees'];
+            if (count($employees) > 0) {
+                foreach ($employees as $employee) {
+                    $user = $em->getRepository(User::class)->find($employee);
+                    $ticket->addEmployee($user);
+                }
+            }
+
+            $em->flush();
+
+            return new Response("1");
         }
 
-        //Obtener datos de empleados
-        $employees=$data['empleoyees'];
-        if(count($employees)>0) {
-            foreach ($employees as $employee) {
-                $user = $em->getRepository(User::class)->find($employee);
-                $ticket->addEmployee($user);
-            }
-        }
-
-        $em->flush();
-
-        return new Response("1");
+        return new Response("0");
     }
 
     /**

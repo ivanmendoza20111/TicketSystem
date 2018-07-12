@@ -102,15 +102,18 @@ class EmployeeController extends Controller
         $data = $request->getContent();
         $data = (json_decode($data, true));
 
-        $user->setName($data['name']);
-        $user->setLastname($data['lastname']);
-        $user->setUsername($data['username']);
-        $user->setStatus($data['status']);
+        if($data['name']!='') {
+            $user->setName($data['name']);
+            $user->setLastname($data['lastname']);
+            $user->setUsername($data['username']);
+            $user->setStatus($data['status']);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            return new Response("1");
+        }
 
-        return new Response("1");
+        return new Response("0");
     }
 
     /**

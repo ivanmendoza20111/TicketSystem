@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b51c98c-d18e-48e6-923f-22b94ac72b73" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/editTicketTime.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/AppKernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AppKernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/services.yml" beforeDir="false" afterPath="$PROJECT_DIR$/app/config/services.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Employee/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Employee/EmployeeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Ticket.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Ticket.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/TicketTime.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,26 +26,8 @@
       <file leaf-file-name="view.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="145" column="35" selection-start-line="145" selection-start-column="29" selection-end-line="145" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="471">
-              <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppKernel.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+              <caret line="52" column="96" selection-start-line="52" selection-start-column="96" selection-end-line="52" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -52,8 +35,8 @@
       <file leaf-file-name="NoteController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="71">
+              <caret line="89" column="74" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="74" />
               <folding>
                 <element signature="e#128#155#0#PHP" expanded="true" />
               </folding>
@@ -61,20 +44,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TicketController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php">
+      <file leaf-file-name="editTicketTime.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/editTicketTime.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="46" />
+            <state relative-caret-position="173">
+              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Ticket.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Ticket.php">
+      <file leaf-file-name="TicketController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="315" column="28" selection-start-line="315" selection-start-column="20" selection-end-line="315" selection-end-column="28" />
+            <state relative-caret-position="456">
+              <caret line="213" column="33" selection-start-line="213" selection-start-column="33" selection-end-line="213" selection-end-column="33" />
+              <folding>
+                <element signature="e#131#158#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,11 +78,14 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>edit_employee</find>
-      <find>update_employee</find>
       <find>many</find>
       <find>name</find>
       <find>employeesA</find>
       <find>notes</find>
+      <find>edit</find>
+      <find>update</find>
+      <find>update_employee</find>
+      <find>update_ticket</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -123,7 +112,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/new.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/TicketType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html" />
@@ -133,7 +121,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/view.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/UserRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/TicketTime.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/ticket.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/TicketTime.html.twig" />
@@ -142,13 +129,18 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html" />
         <option value="$PROJECT_DIR$/app/Resources/views/layout/layout.html.twig" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Ticket.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php" />
         <option value="$PROJECT_DIR$/app/config/services.yml" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/editTicketTime.html" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Employee/EmployeeController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/editTicketTime.html.twig" />
       </list>
     </option>
   </component>
@@ -235,12 +227,6 @@
             <path>
               <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="TicketSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TicketSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -255,6 +241,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
               <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TicketSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="Employee" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -277,13 +271,6 @@
               <item name="TicketSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
-              <item name="Entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TicketSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -293,6 +280,15 @@
               <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TicketSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="Resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Employees" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -311,16 +307,6 @@
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Ticket" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TicketSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TicketSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="AppBundle" type="462c0819:PsiDirectoryNode" />
-              <item name="Resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="Ticket" type="462c0819:PsiDirectoryNode" />
-              <item name="Report" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -375,12 +361,12 @@
       <workItem from="1531259781347" duration="591000" />
       <workItem from="1531296326974" duration="22576000" />
       <workItem from="1531344302952" duration="18636000" />
-      <workItem from="1531387434122" duration="3188000" />
+      <workItem from="1531387434122" duration="5366000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68554000" />
+    <option name="totallyTimeSpent" value="70732000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -419,13 +405,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -624,16 +603,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Employee/EmployeeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
-          <folding>
-            <element signature="e#134#160#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
@@ -648,24 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="66" column="47" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/TicketType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="70" column="72" selection-start-line="70" selection-start-column="72" selection-end-line="70" selection-end-column="72" />
         </state>
       </provider>
     </entry>
@@ -690,13 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1663">
           <caret line="38" column="59" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/TicketTime.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="33" column="77" selection-start-line="33" selection-start-column="71" selection-end-line="33" selection-end-column="77" />
         </state>
       </provider>
     </entry>
@@ -731,13 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Ticket.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -752,13 +693,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#128#155#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="250">
+          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -769,17 +707,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/TicketTime.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="145" column="35" selection-start-line="145" selection-start-column="29" selection-end-line="145" selection-end-column="35" />
+        <state relative-caret-position="-48">
+          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="64" column="56" selection-start-line="64" selection-start-column="56" selection-end-line="64" selection-end-column="56" />
+        <state relative-caret-position="323">
+          <caret line="52" column="96" selection-start-line="52" selection-start-column="96" selection-end-line="52" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Employees/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="72" column="62" selection-start-line="72" selection-start-column="62" selection-end-line="72" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Employee/EmployeeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" column="62" selection-start-line="73" selection-start-column="62" selection-end-line="73" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="213" column="33" selection-start-line="213" selection-start-column="33" selection-end-line="213" selection-end-column="33" />
+          <folding>
+            <element signature="e#131#158#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="71">
+          <caret line="89" column="74" selection-start-line="89" selection-start-column="63" selection-end-line="89" selection-end-column="74" />
+          <folding>
+            <element signature="e#128#155#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/editTicketTime.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
         </state>
       </provider>
     </entry>

@@ -31,6 +31,21 @@ class NoteController extends Controller
     }
 
     /**
+     * @Route("/note/edit/{id}", name="edit_note", requirements={"id"="\d+"})
+     * @Method("GET")
+     * @param Request $request
+     * @param Notes $note
+     * @return Response
+     */
+    public function indexEditNote(Request $request, Notes $note)
+    {
+        return $this->render('@App\Notes\editTicketTime.html.twig',
+            array(
+                "note" => $note,
+            ));
+    }
+
+    /**
      * @Route("/ticket/timeEntry", name="time_entry_save")
      */
     public function newTimeAction(Request $request)
@@ -59,6 +74,7 @@ class NoteController extends Controller
         }else{
             $ticket->setStatus($request->request->all()['status']);
             $ticket->setDateend(null);
+            $ticket->setHours(null);
         }
 
         $em->persist($note);
@@ -67,7 +83,34 @@ class NoteController extends Controller
         return $this->redirectToRoute('ticket');
     }
 
+
+
     //RestFul
+    /**
+     * @Route("/rest/note/{id}",options={"expose"=true}, name="update_note")
+     * @Method("PUT")
+     * @param Request $request
+     * @param Notes $note
+     * @return Response
+     */
+    public function updateEmployee(Request $request,Notes $note)
+    {
+        $data = $request->getContent();
+        $data = (json_decode($data, true));
+
+        if($data['note']!='') {
+            $note->setNote($data['note']);
+            $note->setFecha(new \DateTime());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return new Response("1");
+        }
+
+        return new Response("0");
+    }
+
 
     /**
      * @Route("/rest/notes/delete/ticket/{id}",options={"expose"=true}, name="delete_note_ticket")

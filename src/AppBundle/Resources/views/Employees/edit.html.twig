@@ -67,7 +67,11 @@
                     data: JSON.stringify(data),
                     type: 'PUT',
                     success:function (response) {
-                        window.location.href=Routing.generate('employees');
+                        if(response==1)
+                            window.location.href=Routing.generate('employees');
+                        else{
+                            alert('Hubo un error al Guardar');
+                        }
                     },
                     error: function(err){
                         alert('Nombre de Usuario Existe. Favor Introducir otro.');

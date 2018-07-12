@@ -1,0 +1,59 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}
+Tickets | Edit Time
+{% endblock %}
+
+{% block container %}
+<div class="panel panel-default">
+    <div class="panel-heading">Edit Time Entry Form</div>
+    <div class="panel-body">
+        <h3>Edit Time Entry Information</h3>
+        <form id="frmNote" >
+            <input hidden name="id" id="id" value="{{ note.id }}">
+            <div class="form-group">
+                <label>Note:</label>
+                <textarea class="form-control" name="note" rows="6" id="txtnote" autofocus required="true">{{ note.note }}</textarea>
+            </div>
+            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Save</b></button>
+            <a class="btn btn-danger" href="{{ path('ticket') }}"><span class="glyphicon glyphicon-remove"></span> <b>Cancel</b></a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+
+<script>
+    $(document).ready(function(e){
+        $('#frmNote').submit(function(e){
+            e.preventDefault();
+                var id = $('#id').val();
+                var note = $('#txtnote').val();
+
+                var data={
+                    id:id,
+                    note:note,
+                };
+
+                $.ajax({
+                    url: Routing.generate('update_note', {id:id}),
+                    data: JSON.stringify(data),
+                    type: 'PUT',
+                    success:function (response) {
+                        if(response==1)
+                            window.location.href=Routing.generate('ticket');
+                        else{
+                            alert('Hubo un error al guardar');
+                        }
+                    },
+                    error: function(err){
+
+                    }
+                });
+
+        });
+    });
+</script>
+{% endblock %}
