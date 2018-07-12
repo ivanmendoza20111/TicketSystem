@@ -71,11 +71,13 @@ class TicketController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             //Obtener datos de empleados
-            $employees=($request->request->all())['employees'];
-            if(count($employees)>0) {
-                foreach ($employees as $employee) {
-                    $user = $em->getRepository(User::class)->find($employee);
-                    $ticket->addEmployee($user);
+            if(isset(($request->request->all())['employees'])) {
+                $employees = ($request->request->all())['employees'];
+                if (count($employees) > 0) {
+                    foreach ($employees as $employee) {
+                        $user = $em->getRepository(User::class)->find($employee);
+                        $ticket->addEmployee($user);
+                    }
                 }
             }
 

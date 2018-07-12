@@ -2,8 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b51c98c-d18e-48e6-923f-22b94ac72b73" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Documentation/Documentation Ticket System.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/img/2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/img/report.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/img/report1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/~$cumentation Ticket System.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Documentation/~WRL2915.tmp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/img/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/img/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/img/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/img/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/img/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Documentation/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/Documentation/img/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,23 +30,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="187">
-                <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="errorbd.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/error/errorbd.html.twig">
+      <file leaf-file-name="TicketController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="479">
-              <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+            <state relative-caret-position="482">
+              <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+              <folding>
+                <element signature="e#131#158#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -104,7 +108,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/Report/report.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/editTicketTime.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Note/NoteController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Notes/editTicketTime.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/Ticket/view.html.twig" />
@@ -118,6 +121,7 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/Employee/EmployeeController.php" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php" />
       </list>
     </option>
   </component>
@@ -318,12 +322,12 @@
       <workItem from="1531296326974" duration="22576000" />
       <workItem from="1531344302952" duration="18636000" />
       <workItem from="1531387434122" duration="12421000" />
-      <workItem from="1531432842327" duration="1341000" />
+      <workItem from="1531432842327" duration="2182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79128000" />
+    <option name="totallyTimeSpent" value="79969000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -682,16 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="231" column="16" selection-start-line="231" selection-start-column="16" selection-end-line="231" selection-end-column="48" />
-          <folding>
-            <element signature="e#131#158#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Desktop/ticket-exam-master/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -702,13 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/error/errorbd.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="479">
-          <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -716,6 +703,23 @@
             <caret line="11" column="29" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/error/errorbd.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="479">
+          <caret line="32" column="14" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/Ticket/TicketController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="482">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+          <folding>
+            <element signature="e#131#158#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
