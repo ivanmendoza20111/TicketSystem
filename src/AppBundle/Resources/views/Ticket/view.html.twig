@@ -43,8 +43,8 @@
                                 {% if notes|length >0 %}
                                     {% for note in notes %}
                                         <tr>
-                                            <td id="noteId" hidden>{{ note.id }}</td>
-                                            <td id="ticketId">{{ ticket.id }}</td>
+                                            <td id="noteId" hidden >{{ note.id }}</td>
+                                            <td id="ticketId" hidden>{{ ticket.id }}</td>
                                             <td>{{ note.user.name }} {{ note.user.lastname }}</td>
                                             <td>{{ note.fecha|date('m/d/Y H:m:s') }}</td>
                                             <td>{{ note.note }}</td>
