@@ -8,6 +8,8 @@
 {% endblock %}
 
 {% block container %}
+    <br>
+    <br>
     <div class="panel panel-default">
         <div class="panel-heading">Información para continuar</div>
         <div class="panel-body">
@@ -15,7 +17,7 @@
             <br>
             <div class="form-group">
                 <label>Primero:</label>
-                <textarea class="form-control" disabled>composer update</textarea>
+                <textarea class="form-control" disabled>composer install</textarea>
             </div>
             <div class="form-group">
                 <label>Segundo:</label>
@@ -25,7 +27,7 @@
                 <label>Tercero:</label>
                 <textarea class="form-control" disabled>php bin/console doctrine:schema:update --force</textarea>
             </div>
-            <h4>Al finalizar click <a href="{{ path('login') }}">aquí</a> para continuar.</h4>
+            <h4>Al finalizar click <a href="{{ path('homepage') }}">aquí</a> para continuar.</h4>
         </div>
     </div>
 {% endblock %}
