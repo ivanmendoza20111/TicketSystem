@@ -1,0 +1,31 @@
+{% extends 'layout\layout.html.twig' %}
+
+{% block title %}
+    Información
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block container %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Información para continuar</div>
+        <div class="panel-body">
+            <h3>Primero debe ejecutar estos comandos en CMD o TERMINAL en la raíz de la App para poder usarla.</h3>
+            <br>
+            <div class="form-group">
+                <label>Primero:</label>
+                <textarea class="form-control" disabled>composer update</textarea>
+            </div>
+            <div class="form-group">
+                <label>Segundo:</label>
+                <textarea class="form-control" disabled>php bin/console doctrine:database:create</textarea>
+            </div>
+            <div class="form-group">
+                <label>Tercero:</label>
+                <textarea class="form-control" disabled>php bin/console doctrine:schema:update --force</textarea>
+            </div>
+            <h4>Al finalizar click <a href="{{ path('login') }}">aquí</a> para continuar.</h4>
+        </div>
+    </div>
+{% endblock %}

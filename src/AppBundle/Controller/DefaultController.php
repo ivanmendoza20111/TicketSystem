@@ -15,27 +15,30 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
-        //Verificar si hay usuarios
-        $em=$this->getDoctrine()->getManager();
-        $employes=$em->getRepository(User::class)->findAll();
-        if(count($employes)==0)
-        {
-            $user=new User();
-            $user->setName('Ivan');
-            $user->setLastname('Mendoza');
-            $user->setDateCreated(new \DateTime());
-            $user->setStatus('Active');
-            $user->setUsername('i.mendoza');
+        try {
+            //Verificar si hay usuarios
+            $em = $this->getDoctrine()->getManager();
+            $employes = $em->getRepository(User::class)->findAll();
+            if (count($employes) == 0) {
+                $user = new User();
+                $user->setName('Ivan');
+                $user->setLastname('Mendoza');
+                $user->setDateCreated(new \DateTime());
+                $user->setStatus('Active');
+                $user->setUsername('i.mendoza');
 
-            $plainPassword = '1234';
-            $password = $passwordEncoder->encodePassword($user, $plainPassword);
+                $plainPassword = '1234';
+                $password = $passwordEncoder->encodePassword($user, $plainPassword);
 
-            $user->setPassword($password);
+                $user->setPassword($password);
 
-            $em->persist($user);
-            $em->flush();
+                $em->persist($user);
+                $em->flush();
+            }
+
+            return $this->redirectToRoute('login');
+        }catch(\Exception $ex){
+            return $this->render('\error\errorbd.html.twig');
         }
-
-        return $this->redirectToRoute('login');
     }
 }

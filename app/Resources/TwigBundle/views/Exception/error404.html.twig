@@ -1,0 +1,17 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}
+    Error404
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
+
+{% block container %}
+    <h1>Page not found</h1>
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('login') }}">return to the login.</a>
+    </p>
+{% endblock %}
