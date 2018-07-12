@@ -58,8 +58,9 @@ class Ticket
     /**
      * @ORM\ManyToMany(targetEntity="User", inversedBy="employeesA")
      * @ORM\JoinTable(
+     *      name="ticket_user",
      *      joinColumns={@ORM\JoinColumn(onDelete="CASCADE")},
-     *     inverseJoinColumns={@ORM\JoinColumn(onDelete="CASCADE")}
+     *      inverseJoinColumns={@ORM\JoinColumn(onDelete="CASCADE")}
      * )
      */
     private $employees;

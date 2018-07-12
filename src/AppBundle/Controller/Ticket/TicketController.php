@@ -21,16 +21,26 @@ use Symfony\Component\HttpFoundation\Response;
 class TicketController extends Controller
 {
     /**
-     * @Route("/ticket", name="ticket")
+     * @Route("/ticket", name="ticket",options={"expose"=true})
      */
     public function indexAction(Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
-
-        $tickets=$this->getDoctrine()->getManager()->getRepository(Ticket::class)->findBy(array('user'=>$this->getUser()));
+        //$tickets=$this->getDoctrine()->getManager()->getRepository(Ticket::class)->findAll(array('user'=>$this->getUser()));
+        $tickets=$this->getDoctrine()->getManager()->getRepository(Ticket::class)->findAll();
 
         return $this->render('@App\Ticket\ticket.html.twig',array(
             'tickets'=>$tickets
+        ));
+    }
+
+    /**
+     * @Route("/ticket/timeEntry/{id}", name="ticket_time_entry",options={"expose"=true})
+     * @param Ticket $ticket
+     */
+    public function TimeEntryAction(Ticket $ticket)
+    {
+        return $this->render('@App\Ticket\TicketTime.html.twig',array(
+            'ticket'=>$ticket
         ));
     }
 
@@ -68,14 +78,7 @@ class TicketController extends Controller
 
         //Buscando Usuarios Activos
         $em=$this->getDoctrine()->getManager();
-        $query=$em->createQuery(
-            'SELECT u
-             FROM AppBundle:User u
-             WHERE u.status = :status
-            '
-        )->setParameter('status','Active');
-
-        $employees=$query->getResult();
+        $employees=$em->getRepository(User::class)->findAllUserActive();
 
         return $this->render('@App\Ticket\new.html.twig',array(
             'form'=>$form->createView(),
@@ -88,7 +91,7 @@ class TicketController extends Controller
      * @Method("GET")
      * @param Ticket $ticket
      */
-    public function deleteEmployee(Ticket $ticket)
+    public function removeTicket(Ticket $ticket)
     {
         $em=$this->getDoctrine()->getManager();
         $em->remove($ticket);
@@ -102,7 +105,7 @@ class TicketController extends Controller
      * @param Ticket $ticket
      * @return Response
      */
-    public function indexViewEmployee(Ticket $ticket)
+    public function indexViewTicket(Ticket $ticket)
     {
         $employees=$ticket->getEmployees();
 
@@ -113,7 +116,69 @@ class TicketController extends Controller
             ));
     }
 
+    /**
+     * @Route("/ticket/edit/{id}", name="edit_ticket", requirements={"id"="\d+"})
+     * @Method("GET")
+     * @param Ticket $ticket
+     * @return Response
+     */
+    public function indexEditTicket(Ticket $ticket)
+    {
+        $employees=$ticket->getEmployees();
+
+        //Buscando Usuarios Activos
+        $em=$this->getDoctrine()->getManager();
+        $employeesActive=$em->getRepository(User::class)->findAllUserActive();
+
+        return $this->render('@App\Ticket\edit.html.twig',
+            array(
+                "ticket" => $ticket,
+                'employees'=>$employees,
+                'employeesActive'=>$employeesActive
+            ));
+    }
+
     //RestFul
+    /**
+     * @Route("/rest/ticket/{id}",options={"expose"=true}, name="update_ticket")
+     * @Method("PUT")
+     * @param Request $request
+     * @param Ticket $ticket
+     * @return Response
+     */
+    public function updateTicket(Request $request,Ticket $ticket)
+    {
+        $data = $request->getContent();
+        $data = (json_decode($data, true));
+
+        $em=$this->getDoctrine()->getManager();
+
+        $ticket->setSubject($data['subject']);
+        $ticket->setDescription($data['description']);
+
+        //Remover todos los empleados relacionados
+        $employeesTickets=$ticket->getEmployees();
+        if(count($employeesTickets)>0){
+            foreach ($employeesTickets as $user) {
+                $user = $em->getRepository(User::class)->find($user);
+                $ticket->removeEmployee($user);
+            }
+        }
+
+        //Obtener datos de empleados
+        $employees=$data['empleoyees'];
+        if(count($employees)>0) {
+            foreach ($employees as $employee) {
+                $user = $em->getRepository(User::class)->find($employee);
+                $ticket->addEmployee($user);
+            }
+        }
+
+        $em->flush();
+
+        return new Response("1");
+    }
+
     /**
      * @Route("/rest/ticket/{id}",options={"expose"=true}, name="delete_ticket")
      * @Method("DELETE")
@@ -125,6 +190,27 @@ class TicketController extends Controller
         $em=$this->getDoctrine()->getManager();
         $em->remove($ticket);
         $em->flush();
+        return new Response("1");
+    }
+
+    /**
+     * @Route("/rest/ticket/delete/employee/{id}",options={"expose"=true}, name="delete_ticketEmployee")
+     * @Method("DELETE")
+     * @param Request $request
+     * @param Ticket $ticket
+     * @return Response
+     */
+    public function deleteTicketEmployees(Request $request,Ticket $ticket)
+    {
+        $data = $request->getContent();
+        $data = (json_decode($data, true));
+
+        $em=$this->getDoctrine()->getManager();
+        $user=$em->getRepository(User::class)->find($data['idEmployee']);
+
+        $ticket->removeEmployee($user);
+        $em->flush();
+
         return new Response("1");
     }
 }

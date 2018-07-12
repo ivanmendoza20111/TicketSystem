@@ -9,9 +9,12 @@
         <div class="panel-heading">Ticket #{{ ticket.id }}</div>
         <div class="panel-body">
 
-            <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> <b>Edit</b></a>
-            <a href="{{ path('remove_ticket',{ id: ticket.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> <b>Delete</b></a>
-            <hr>
+            {% if app.user==ticket.user %}
+                <a href="{{ path('edit_ticket',{id : ticket.id}) }}" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> <b>Edit</b></a>
+                <a href="{{ path('remove_ticket',{ id: ticket.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> <b>Delete</b></a>
+                <hr>
+            {% endif %}
+
             <label>Ticket #:</label> {{ ticket.id }}<br>
             <label>Subject:</label> {{ ticket.subject }}<br>
             <label>Date:</label> {{ ticket.date|date('m/d/Y H:m:s') }} <br>
@@ -60,13 +63,16 @@
                             {% if employees|length > 0 %}
                                 {% for employee in employees %}
                                     <tr>
-                                        <td hidden id="employeId">{{ employee.id }}</td>
+                                        <td hidden id="ticketId">{{ ticket.id }}</td>
+                                        <td hidden id="employeeId">{{ employee.id }}</td>
                                         <td>{{ employee.name }}</td>
                                         <td>{{ employee.lastname }}</td>
                                         <td>{{ employee.username }}</td>
                                         <td>
                                             <a href="{{ path('view_employee',{ 'id':employee.id }) }}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span> <b>View</b></a>
-                                            <button id="deleteTicketEmployee" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> <b>Delete</b></button>
+                                            {% if app.user==ticket.user %}
+                                                <button id="deleteTicketEmployee" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> <b>Delete</b></button>
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -82,4 +88,35 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+
+<script>
+    $(document).ready(function(e){
+        $(document).on('click','#deleteTicketEmployee',function(e){
+
+            var r=$(e.target).closest('tr');
+
+            var ticketId=r.find('#ticketId').text();
+            var employeeId=r.find('#employeeId').text();
+
+            var data={
+                id: ticketId,idEmployee: employeeId
+            };
+
+            r.remove();
+
+            $.ajax({
+                url:Routing.generate('delete_ticketEmployee', {id: ticketId}),
+                type:'DELETE',
+                data: JSON.stringify(data),
+                success:function(response) {
+
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'layout/layout.html.twig' %}
+
+{% block title %}
+    Tickets | Time
+{% endblock %}
+
+{% block container %}
+<div class="panel panel-default">
+    <div class="panel-heading">Time Entry Form</div>
+    <div class="panel-body">
+        <h3>Ticket Information</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <label>Ticket #: </label>{{ ticket.id }}<br>
+                <label>Subject: </label>{{ ticket.subject }}<br>
+            </div>
+            <div class="col-md-4">
+                <label>Date: </label>{{ ticket.date|date('m/d/Y H:m:s') }}<br>
+                <label>Status: </label>{{ ticket.status }}<br>
+            </div>
+        </div>
+        <hr>
+        <h3>Time Entry Information</h3>
+        <form id="frmNote" action="" method="POST">
+            <div class="form-group">
+                <label>Note:</label>
+                <textarea class="form-control" name="note" rows="6" id="txtnote" autofocus required="true"></textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Status:</label>
+                        <select class="form-control" id="status" name="status" required="true">
+
+                            <option {% if ticket.status=='Open' %} selected {% endif %} value="Open">Open</option>
+                            <option {% if ticket.status=='Closed' %} selected {% endif %}  value="Closed">Closed</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-floppy-disk"></span> <b>Save</b></button>
+            <a class="btn btn-danger" href="{{ path('ticket') }}"><span class="glyphicon glyphicon-remove"></span> <b>Cancel</b></a>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+{% endblock %}
