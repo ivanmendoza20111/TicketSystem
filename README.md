@@ -27,3 +27,5 @@ Ticket System Net Tech International
  Ya puede utilizar la App Ticket System.
 
 La documentación de la Aplicación esta en la carpeta Documentation dentro del proyecto.
+
+El Script de la BD se encuentra en la carpeta Documentation/DB.
