@@ -71,13 +71,11 @@ class TicketController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             //Obtener datos de empleados
-            if(isset(($request->request->all())['employees'])) {
-                $employees = ($request->request->all())['employees'];
-                if (count($employees) > 0) {
-                    foreach ($employees as $employee) {
-                        $user = $em->getRepository(User::class)->find($employee);
-                        $ticket->addEmployee($user);
-                    }
+            $employees=($request->request->all())['employees'];
+            if(count($employees)>0) {
+                foreach ($employees as $employee) {
+                    $user = $em->getRepository(User::class)->find($employee);
+                    $ticket->addEmployee($user);
                 }
             }
 
@@ -108,13 +106,13 @@ class TicketController extends Controller
         if(isset($request->request->all()['desde']))
         {
             if($request->request->all()['desde']!='')
-                $fechaDesde=$request->request->all()['desde'];
+                $fechaDesde=$request->request->all()['desde'].' 00:00:00';
         }
 
         if(isset($request->request->all()['desde']))
         {
             if($request->request->all()['hasta']!='')
-                $fechaHasta=$request->request->all()['hasta'];
+                $fechaHasta=$request->request->all()['hasta'].' 23:59:00';
         }
 
         $em=$this->getDoctrine()->getManager();

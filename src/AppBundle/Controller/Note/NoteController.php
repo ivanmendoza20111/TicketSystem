@@ -69,8 +69,9 @@ class NoteController extends Controller
             $ticket->setDateend(new \DateTime());
 
             //Calculo de Horas
-            $hour=$ticket->getDate()->diff(new \DateTime());
-            $ticket->setHours($hour->format('%H.%m'));
+            $fechaActual=new \DateTime();
+            $hour=$ticket->getDate()->diff($fechaActual);
+            $ticket->setHours($hour->format('%H.%i'));
         }else{
             $ticket->setStatus($request->request->all()['status']);
             $ticket->setDateend(null);
@@ -81,6 +82,21 @@ class NoteController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('ticket');
+    }
+
+    function GetDeltaTime($dtTime1, $dtTime2)
+    {
+        $nUXDate1 = strtotime($dtTime1->format("Y-m-d H:i:s"));
+        $nUXDate2 = strtotime($dtTime2->format("Y-m-d H:i:s"));
+
+        $nUXDelta = $nUXDate1 - $nUXDate2;
+        $strDeltaTime = "" . $nUXDelta/60/60; // sec -> hour
+
+        $nPos = strpos($strDeltaTime, ".");
+        if (nPos !== false)
+            $strDeltaTime = substr($strDeltaTime, 0, $nPos + 3);
+
+        return $strDeltaTime;
     }
 
 
